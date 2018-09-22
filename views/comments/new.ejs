@@ -1,0 +1,24 @@
+<% include ../partials/header.ejs%>
+<% include ../partials/navbar.ejs%>
+
+<div class="container">
+	<div class="row">
+		<div class="reduce_width">
+			<h4 style="text-align: center;">Add New Comment To <%= photo.name %></h4>
+			<br>
+			<form action="/photos/<%= photo._id %>/comments" method="POST">
+
+				<div class="form-group">
+					<textarea class="form-control" rows="5" type="text" name="comments[text]" placeholder="Comment"></textarea>
+				</div>
+				
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-default btn-block" type="submit">Submit</button>
+				</div>
+			</form>
+			<a href="/photos/<%= photo._id %>">Back</a>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer.ejs%>

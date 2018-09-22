@@ -1,0 +1,67 @@
+<% include ../partials/header.ejs%>
+<% include ../partials/navbar.ejs%>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="border text-center">
+				<h4>Author's note</h4>
+				<p><%= photo.author_note %></p>
+
+				<a class="btn btn btn-warning" href="/photos/<%= photo._id %>/edit">Edit</a>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="img-responsive image_size" src="<%= photo.image %>">
+				<div class="caption-full">
+					<h4><a href=""><%= photo.name %></a></h4>
+					<p><%= photo.description %></p>
+					<p>
+						<em>Submitted By <%= photo.author.username %></em>
+					</p>
+					<% if (currentUser && photo.author.id.equals(currentUser._id)) { %>
+						<a class="btn btn-sm btn-warning" href="/photos/<%= photo._id %>/edit">Edit</a>
+						<form id="delete-form" action="/photos/<%= photo._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-sm btn-danger">Delete</button>
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<div class="card card-body bg-light">
+				<div class="text-right"><a class="btn btn-success" href="/photos/<%= photo._id %>/comments/new">Add New Comment</a></div>
+				
+				<br>
+				<br>
+				<!-- <hr> -->
+				<% photo.comments.forEach(function(comment){ %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.author.username %></strong>
+							<span class="float-right"><%= comment.time %></span>
+							<br>
+							<br>
+							<p>
+								<%= comment.text %>
+							</p>
+							<% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+								<a  class="btn btn-sm btn-warning" 
+								    href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">
+									Edit
+								</a>
+								<form id="delete-form" action="/photos/<%= photo._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+									<input class="btn btn-sm btn-danger" type="submit" value="Delete" ">
+								</form>
+								<br>
+							<% } %>	
+							<br>
+						</div>
+					</div>
+					
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer.ejs%>
