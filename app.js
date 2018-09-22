@@ -15,7 +15,7 @@ var commentRoutes 			= require("./routes/comments"),
 	photoRoutes				= require("./routes/photos"),
 	indexRoutes				= require("./routes/index");	
 
-mongoose.connect("mongodb://localhost/photo_gallery", { useNewUrlParser: true });
+mongoose.connect("mongodb://anupam:anupam11<dbpassword>@ds159812.mlab.com:59812/photoworld", { useNewUrlParser: true });
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
