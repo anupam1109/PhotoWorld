@@ -24,15 +24,18 @@
 		<% photos.forEach(function(photo){ %>
 			<div class="col-md-3 col-sm-6">
 				<div class="thumbnail">
-					<img class="passport" src="<%= photo.image %>">
+					<a href="/photos/<%= photo._id %>">
+						<img class="passport" src="<%= photo.image %>">
+					</a>
 					<div>
 						<h4><%= photo.name %></h4>
 					</div>
-					<div>
+					<br>
+					<!-- <div>
 						<p>
 							<a href="/photos/<%= photo._id %>" class="btn btn-primary">More Info</a>
 						</p>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		<% }) %>	
