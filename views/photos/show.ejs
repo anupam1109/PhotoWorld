@@ -6,7 +6,9 @@
 		<div class="col-md-3">
 			<div class="border text-center">
 				<h4>Author's note</h4>
-				<p><%= photo.author_note %></p>
+				<% if (currentUser && photo.author.id.equals(currentUser._id)) { %>
+					<p><%= photo.author_note %></p>
+				<% } %>	
 
 				<a class="btn btn btn-warning" href="/photos/<%= photo._id %>/edit">Edit</a>
 			</div>
